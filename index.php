@@ -6,6 +6,10 @@ require 'many-logic.php';
 
 if (isset($_GET['w']) && !empty($_GET['w'])) {
     $muchWords = $_GET['w'];
+
+    if (is_string($muchWords)) {
+        $muchWords = explode(',', $muchWords);
+    }
 }
 
 $soDoge = $plzDogify($muchWords);
