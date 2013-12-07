@@ -4,12 +4,16 @@ $veryPre = @preg_match('/html/', $_SERVER['HTTP_ACCEPT']);
 
 require 'many-logic.php';
 
-if ($veryPre) {
-    echo '<pre>';
+if (isset($_GET['words']) && !empty($_GET['words'])) {
+    $muchWords = $_GET['words'];
 }
 
-echo $plzDogify($muchWords);
+$soDoge = $plzDogify($muchWords);
 
 if ($veryPre) {
+    echo '<pre>';
+    echo htmlentities($soDoge);
     echo '</pre>';
+} else {
+    echo $soDoge;
 }

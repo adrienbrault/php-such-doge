@@ -41,19 +41,28 @@ $plzIndentation = function ($veryDoge) {
 };
 $plzDogify = function ($muchWords, $manyLines = 5) use ($soPrefixes, $veryWords, $plzIndentation) {
     $niceDoge = '';
-    for ($i = 0; $i < $manyLines && (0 < count($muchWords) || 0 < (count($veryWords) + count($soPrefixes))); $i++) {
 
-        if (($i > 2 && 0 < count($veryWords) && rand(0, 1) === 1) || (1 > min(count($soPrefixes), count($muchWords)))) {
-            $veryWordKey = array_rand($veryWords);
-            $veryLine = array_splice($veryWords, $veryWordKey, 1)[0];
-        } else {
+    while (
+        count(preg_split('/\n/', $niceDoge)) <= $manyLines
+        && (
+            min(count($muchWords), count($soPrefixes)) > 0
+            || count($veryWords) > 0
+        )
+    ) {
+        $veryLine = null;
+
+        if (count($veryWords) > 0 && rand(0, 1) === 1) {
+            $veryLine = array_splice($veryWords, array_rand($veryWords), 1)[0];
+        } elseif (min(count($muchWords), count($soPrefixes)) > 0) {
             $veryLine = sprintf(
                 array_splice($soPrefixes, array_rand($soPrefixes), 1)[0],
                 array_splice($muchWords, array_rand($muchWords), 1)[0]
             );
         }
 
-        $niceDoge .= $plzIndentation($niceDoge) . $veryLine . "\n";
+        if (null !== $veryLine) {
+            $niceDoge .= $plzIndentation($niceDoge) . $veryLine . "\n";
+        }
     }
 
     return $niceDoge;
