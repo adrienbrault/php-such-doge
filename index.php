@@ -4,8 +4,8 @@ $veryPre = @preg_match('/html/', $_SERVER['HTTP_ACCEPT']);
 
 require 'many-logic.php';
 
-if (isset($_GET['words']) && !empty($_GET['words'])) {
-    $muchWords = $_GET['words'];
+if (isset($_GET['w']) && !empty($_GET['w'])) {
+    $muchWords = $_GET['w'];
 }
 
 $soDoge = $plzDogify($muchWords);
