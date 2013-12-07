@@ -51,7 +51,7 @@ $plzDogify = function ($muchWords, $manyLines = 5) use ($soPrefixes, $veryWords,
     ) {
         $veryLine = null;
 
-        if (count($veryWords) > 0 && rand(0, 1) === 1) {
+        if (count($veryWords) > 0 && rand(0, 1) === 1 && count(preg_split('/\n/', $niceDoge)) > 2) {
             $veryLine = array_splice($veryWords, array_rand($veryWords), 1)[0];
         } elseif (min(count($muchWords), count($soPrefixes)) > 0) {
             $veryLine = sprintf(
